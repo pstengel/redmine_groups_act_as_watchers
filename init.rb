@@ -10,7 +10,8 @@ plugin = Redmine::Plugin.register :redmine_groups_act_as_watchers do
 end
 
 Rails.configuration.to_prepare do
-  require "#{plugin.directory}/app/models/watcher"
   require "#{plugin.directory}/app/models/group"
+  require "#{plugin.directory}/app/models/issue"
+  require "#{plugin.directory}/app/models/watcher"
   require "#{plugin.directory}/app/controllers/watchers_controller"
 end
