@@ -2,10 +2,8 @@ require_dependency "watchers_controller"
 
 class WatchersController < ApplicationController
   def append_with_groups
-    append_without_groups
-
     user_ids = params[:watcher][:user_ids] || params[:watcher][:user_id]
-    @users += Group.where(id: user_ids).all
+    @users = Group.where(id: user_ids).all + User.active.where(id: user_ids).all
 
     render(nothing: true) if @users.blank?
   end
