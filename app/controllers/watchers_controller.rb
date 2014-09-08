@@ -22,9 +22,9 @@ class WatchersController < ApplicationController
   def users_for_new_watcher_with_groups
     users_for_new_watcher_without_groups.tap do |users|
       if @watched
-        users.concat(Group.all.sorted - Group.where(id: @watched.watcher_users))
+        users.concat(Group.sorted.all - Group.where(id: @watched.watcher_users))
       else
-        users.concat(Group.all.sorted)
+        users.concat(Group.sorted.all)
       end
     end
   end
