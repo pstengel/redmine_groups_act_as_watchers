@@ -10,8 +10,8 @@ class WatchersController < ApplicationController
   alias_method_chain :append, :groups
 
   def destroy_with_groups
-    @watched.set_watcher(User.where(id: params[:user_id]), false)
-    @watched.set_watcher(Group.where(id: params[:user_id]), false)
+    @watched.set_watcher(User.where(id: params[:user_id]).first, false)
+    @watched.set_watcher(Group.where(id: params[:user_id]).first, false)
 
     respond_to do |format|
       format.html { redirect_to :back }
