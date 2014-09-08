@@ -14,4 +14,9 @@ class Issue < ActiveRecord::Base
     end
   end
   alias_method_chain :notified_watchers, :groups
+
+  def remove_watcher(user)
+    return nil unless user && (user.is_a?(User) || user.is_a?(Group)
+    watchers.where(:user_id => user.id).delete_all
+  end
 end
